@@ -52,7 +52,18 @@ namespace Banking.Models.Domain
             }
         }
 
+
+        //readonly property, enkel getter
+        public IEnumerable<Transaction> Transactions
+        {
+            get
+            {
+                return _transactions;
+            }
+        }
         public string AccountNumber { get; private set; } 
+
+
         #endregion
 
         #region Constructors
@@ -90,11 +101,7 @@ namespace Banking.Models.Domain
 
         }
 
-        //readonly property, enkel getter
-        public IEnumerable<Transaction> Transactions {
-            get {
-                return _transactions;
-             }
+        
         #endregion
     }
 }
