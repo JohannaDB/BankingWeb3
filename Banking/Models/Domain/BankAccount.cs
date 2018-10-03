@@ -92,7 +92,8 @@ namespace Banking.Models.Domain
             _transactions.Add(new Transaction(amount, TransactionType.Deposit));
         }
 
-        public void Withdraw(decimal amount)
+        //virtual zodat je aantoont dat deze methode mag overschreven worden
+        public virtual void Withdraw(decimal amount)
         {
             if (amount < 0)
                 throw new ArgumentException("Amount cannot be negative");
