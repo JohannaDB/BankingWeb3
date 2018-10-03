@@ -11,6 +11,7 @@ namespace Banking.Models.Domain
 
         //private string _accountNumber;
         private decimal _balance;
+        private ICollection<Transaction> _transactions;
 
         //constante definiëren = sowieso static!
         //geldwaarden altijd met decimal
@@ -65,6 +66,7 @@ namespace Banking.Models.Domain
         {
             AccountNumber = accountNumber;
             Balance = balance;
+            _transactions = new List<Transaction>();
             //_withdrawCost = 0.10M;
         }
         #endregion
@@ -76,6 +78,7 @@ namespace Banking.Models.Domain
             if (amount < 0)
                 throw new ArgumentException("Amount cannot be negative");
             Balance += amount/* * nrOfTimes*/;
+            _transactions.Add(new Transaction(amount, TransactionType.Deposit));
         }
 
         public void Withdraw(decimal amount)
@@ -83,7 +86,15 @@ namespace Banking.Models.Domain
             if (amount < 0)
                 throw new ArgumentException("Amount cannot be negative");
             Balance -= amount;
-        } 
+            _transactions.Add(new Transaction(amount, TransactionType.Withdraw));
+
+        }
+
+        //readonly property, enkel getter
+        public IEnumerable<Transaction> Transactions {
+            get {
+                return _transactions;
+             }
         #endregion
     }
 }
