@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Banking.Models.Domain
 {
-    public class BankAccount
+    public class BankAccount : IBankAccount
     {
         #region Fields
         //Fields ipv attributen
@@ -102,7 +102,24 @@ namespace Banking.Models.Domain
 
         }
 
-        
+        public override string ToString()
+        {
+            return $"{AccountNumber} -- {Balance}";
+        }
+
+        public override bool Equals(object obj)
+        {
+            BankAccount ba = obj as BankAccount;
+            //BankAccount ba = (BankAccount) obj; werpt mogelijks exception
+            if (ba == null) return false;
+            return AccountNumber == ba.AccountNumber;
+        }
+
+        public override int GetHashCode()
+        {
+            return AccountNumber.GetHashCode();
+        }
+        //gouden regel: als je de equals overschrijft, moet je ook de hashCode overschrijven
         #endregion
     }
 }

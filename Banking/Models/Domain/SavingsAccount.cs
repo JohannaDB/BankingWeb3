@@ -15,7 +15,7 @@
         {
             Deposit(Balance * InterestRate);
         }
-        
+        //equals, getHashCode, toString -> 3 methodes die je kan overschrijven
         //je moet override erbij zetten, als je een methode wil overriden, moet je ook aangeven in de methode in de andere klasse : virtual
         public override void Withdraw(decimal amount)
         {

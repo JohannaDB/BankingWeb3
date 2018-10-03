@@ -21,11 +21,12 @@ namespace Banking
             Console.WriteLine($"Balance is currently {myOtherBA.Balance} Euro");
 
             myBA.Deposit(1000);
-            Console.WriteLine($"Balance is currently {myBA.Balance} Euro");
+            Console.WriteLine(myBA);
             myBA.Deposit(200/*, 3*/);
-            Console.WriteLine($"Balance is currently {myBA.Balance} Euro");
+            Console.WriteLine(myBA);
             myBA.Withdraw(100);
-            Console.WriteLine($"Balance is currently {myBA.Balance} Euro");
+            //toString wordt automatisch aangeroepen!
+            Console.WriteLine(myBA);
 
             //IEnumerable<Transaction> transactions = myBA.Transactions;
             var transactions = myBA.Transactions;
